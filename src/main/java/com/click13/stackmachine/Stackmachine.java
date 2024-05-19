@@ -6,6 +6,11 @@ import lombok.NonNull;
 import java.util.List;
 
 public class Stackmachine {
+
+    public static StackmachineBuilder builer(){
+        return new StackmachineBuilder();
+    }
+
     @Getter
     private State state;
     private List<Transition> transitions;
@@ -17,5 +22,7 @@ public class Stackmachine {
         internalStack = new Stack();
     }
 
-
+    public boolean isStackEmpty(){
+        return internalStack.isEmpty();
+    }
 }

@@ -1,5 +1,6 @@
 package com.click13.stackmachine;
 
+import com.click13.stackmachine.rules.RuleProcessor;
 import lombok.NonNull;
 
 import java.util.LinkedList;
@@ -26,8 +27,11 @@ public class StackmachineBuilder {
     }
 
     public Stackmachine build(){
-        //TODO Regelprüfungen einfügen!
-        return new Stackmachine(startState, transitions);
+        if (new RuleProcessor().processRules(startState, transitions)) {
+            return new Stackmachine(startState, transitions);
+        } else {
+            return null;
+        }
     }
 
     private static Transition[] toArray(List<Transition> transitions){
